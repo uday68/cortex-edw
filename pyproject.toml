@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cortex-edw"
+version = "1.0.0"
+description = "Enterprise Data Warehouse Autonomous Agentic Platform for Petabyte-Scale Analytics & Governed GenAI"
+authors = [{ name = "V Uday", email = "vuday8370@gmail.com" }]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "duckdb>=1.0.0",
+    "sqlglot>=25.0.0",
+    "pandas>=2.0.0",
+    "numpy>=1.26.0",
+    "scipy>=1.13.0",
+    "streamlit>=1.38.0",
+    "pydantic>=2.8.0"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"

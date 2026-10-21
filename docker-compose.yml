@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  cortex-edw:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cortex-edw-service
+    ports:
+      - "8000:8000"   # FastAPI Backend & SSE Streaming
+      - "8501:8501"   # Streamlit Interactive Control Tower
+    environment:
+      - CORTEX_ENV=production
+      - CORTEX_ENGINE=duckdb
+      - CORTEX_LOG_LEVEL=INFO
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
